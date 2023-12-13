@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "React Game",
+    "description": "Tic tac toe game created using Create React App",
+    "URL": "http://heroku/myapp/game"
+  },
+  {
+    "id": 2,
+    "title": "Online Store",
+    "description": "Online store created using HTML, CSS, and Javascript",
+    "URL": "https://git.com/myrepos/shop/index"
+  }
+]
