@@ -11,9 +11,11 @@ This is a simple RESTful API for managing a list of web project items.
    cd <repository-directory>
    ```
 
-2. Run the file on your local machine using npm install and npm start
+2. Run the backend file on your local machine and use node web_items.js to start the server
 
-3. Use the localhost URL in Postman to test the API:
+3. Run the frontend file on your local machine using npm install and npm start
+
+4. Use the localhost URL in Postman to test the API:
 
 - Get All Web Items: Send a GET request to http://localhost:8080/api.
 
