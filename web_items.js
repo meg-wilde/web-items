@@ -1,11 +1,10 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const fs = require("fs");
 
 const app = express();
 const port = 3001; //set the port to 3001
 
-app.use(bodyParser.json()); //using bodyParser to parse the JSON requests
+app.use(express.json()); //using express.json() to parse JSON requests
 
 // utility function - gets web item data, and creates the file if it doesn't exist
 function getItems() {
