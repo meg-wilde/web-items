@@ -20,7 +20,6 @@ function App() {
   const fetchProjects = async () => {
     const response = await fetch("http://localhost:3001/api");
     const projects = await response.json();
-    console.log("Fetched projects:", projects);
     setProjects(projects);
   };
 
@@ -34,11 +33,11 @@ function App() {
       body: JSON.stringify(newProject),
     });
 
-    // If successful, fetch updated projects and reset newProject state
+    // If successful, wait to fetch updated projects and reset newProject state
     if (response.ok) {
-      fetchProjects();
       setNewProject({ title: "", description: "", URL: "" });
     }
+    fetchProjects();
   };
 
   //function to delete a project using DELETE

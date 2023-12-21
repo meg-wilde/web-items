@@ -1,8 +1,12 @@
 const express = require("express");
 const fs = require("fs");
+const path = require("path"); //import the path module
 
 const app = express();
 const port = 3001; //set the port to 3001
+
+// Serve static files from the React build
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 app.use(express.json()); //using express.json() to parse JSON requests
 
@@ -14,7 +18,7 @@ function getItems() {
     return JSON.parse(content);
   } catch (e) {
     // if the file doesn't exist create a new file with an empty array.
-    fs.writeFileSync("web_items", "[]");
+    fs.writeFileSync("web_items.json", "[]");
     return [];
   }
 }
@@ -30,23 +34,38 @@ app.get("/api", (req, res) => {
 
 // POST method to a new web item
 app.post("/api", (req, res) => {
-  const newItem = req.body; //set the newItem to be the body of the request
-  newItem.id = webItems.length + 1; //assign a new ID to the item by adding 1 to the length of the existing array
+  const { title, description, URL } = req.body; //destructure the properties from the request body
+  const newItemId = webItems.length + 1; //set the newItemId by adding 1 to the length of the existing array
+  //create a new item object with all the properties
+  const newItem = {
+    id: newItemId,
+    title,
+    description,
+    URL,
+  };
+
   webItems.push(newItem); //push the new item into the array of items
-  res.json(newItem); //respond with the newly created item
+
+  // Save the updated items to the file
+  fs.writeFileSync("web_items/json", JSON.stringify(webItems, null, 2));
+  // Respond with the newly created item
+  res.json(newItem);
 });
 
 // PUT method to update a web item
 app.put("/api/:id", (req, res) => {
   const itemId = parseInt(req.params.id); //get the item ID from the request parameters
-  const updatedItem = req.body; //get the updated item from the body of the request
+  const { title, description, URL } = req.body; //get the updated properties and destructure them from the body of the request
 
   //update the webItems array with the new updated item
   webItems = webItems.map((item) =>
     //iterate over each item in WebItems to find the itemID that matches item.id
     //use a spread operator (...) to create a new item and merge it with the existing item
-    item.id === itemId ? { ...item, ...updatedItem } : item
+    item.id === itemId ? { ...item, title, description, URL } : item
   );
+
+  //Save the updated items to the file
+  fs.writeFileSync("web_items.json", JSON.stringify(webItems, null, 2));
 
   //respond with the updated web item
   //use find to find the item that was just updated by matching item.id to itemId
@@ -64,7 +83,12 @@ app.delete("/api/:id", (req, res) => {
   res.sendStatus(204); //Respond with the status for content not found
 });
 
+// Handle other routes by serving the React app's index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build/index.html"));
+});
+
 //start the server
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}/api`);
+  console.log(`Server is running at http://localhost:${port}`);
 });

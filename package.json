@@ -1,50 +1,20 @@
 {
-  "name": "web-projects-app",
-  "version": "0.1.0",
-  "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "express": "^4.18.2"
   },
+  "name": "l03t02a",
+  "description": "This is a simple RESTful API for managing a list of web project items.",
+  "version": "1.0.0",
+  "main": "web_items.js",
+  "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "cd backend/frontend && npm install && npm run build"
+    "start": "node web_items.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
     "node": "20.5.0",
     "npm": "9.8.0"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "description": "This is a simple RESTful API for managing a list of web project items.",
-  "main": "web_items.js",
-  "devDependencies": {},
   "author": "",
   "license": "ISC"
 }
