@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path"); //import the path module
 
 const app = express();
-const port = 3001; //set the port to 3001
+const port = process.env.PORT || 3001; //set the port to 3001
 
 // Serve static files from the React build
 app.use(express.static(path.join(__dirname, "frontend/build")));
