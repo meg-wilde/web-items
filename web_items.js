@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3001; //set the port to 3001
 
 // Serve static files from the React build
-app.use(express.static(path.join(__dirname, "frontend", "build")));
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 app.use(express.json()); //using express.json() to parse JSON requests
 
@@ -85,7 +85,7 @@ app.delete("/api/:id", (req, res) => {
 
 // Handle other routes by serving the React app's index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend/build/index.html"));
 });
 
 //start the server

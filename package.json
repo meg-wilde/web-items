@@ -8,7 +8,7 @@
   "main": "web_items.js",
   "devDependencies": {},
   "scripts": {
-    "start": "node web_items.js",
+    "start": "node web_items.js & (cd frontend && npm start)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
